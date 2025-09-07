@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <title>Database Mapel</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      * {
+        font-family: Jura;
+      }
+
+      #tabelMateri {
+        border: 1px solid black;
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+      }
+
+      #labelMapel {
+        margin-left: 10px;
+      }
+
+      button, input, #input_kelas, #input_mapel {
+        margin-top: 10px;
+      }
+
+      #tanggal {
+        margin-left: 28px;
+      }
+
+      #input_kelas {
+        margin-left: 48px;
+      }
+
+      #lastmateri {
+        margin-left: 2px;
+      }
+
+      #input_mapel {
+        margin-left: 42px;
+      }
+
+      footer {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+    </style>
+</head>
+<body>
+
+<header>
+  <h1 align="center">DATABASE MATERI [SW]</h1>
+</header>
+
+<h2>Form Input Materi</h2>
+<form id="materiForm">
+  <label>Tanggal: <input type="date" id="tanggal" required></label><br>
+  <label>Kelas: <select id="input_kelas" required>
+    <option value="">--pilih kelas--</option>
+    <option value="10/SMA/22">10/SMA/22</option>
+    <option value="10/SMA/24">10/SMA/24</option>
+    <option value="10/SMA/26">10/SMA/26</option>
+    <option value="10/SMA/28">10/SMA/28</option>
+    <option value="11/IPS/12">11/IPS/12</option>
+    <option value="11/IPS/22">11/IPS/22</option>
+    <option value="11/IPA/14">11/IPA/14</option>
+    <option value="11/IPA/22">11/IPA/22</option>
+    <option value="11/IPA/24">11/IPA/24</option>
+    <option value="11/IPA/26">11/IPA/26</option>
+    <option value="11/IPA/28">11/IPA/28</option>
+    <option value="12/IPS/15">12/IPS/15</option>
+    <option value="12/IPS/27">12/IPS/27</option>
+    <option value="12/IPA/11">12/IPA/11</option>
+    <option value="12/IPA/12">12/IPA/12</option>
+    <option value="12/IPA/13">12/IPA/13</option>
+    <option value="12/IPA/17">12/IPA/17</option>
+    <option value="12/IPA/21">12/IPA/21</option>
+    <option value="12/IPA/23">12/IPA/23</option>
+    <option value="12/IPA/25">12/IPA/25</option>
+    </select>
+  </label><br>
+  <label>Mapel: <select id="input_mapel" required>
+    <option value="">--pilih mapel--</option>
+    <option value="MAT">MAT</option>
+    <option value="MATW">MATW</option>
+    <option value="MATL">MATL</option>
+    <option value="FIS">FIS</option>
+    <option value="KIM">KIM</option>
+    <option value="BIO">BIO</option>
+    <option value="EKO">EKO</option>
+    <option value="GEO">GEO</option>
+    <option value="SOSIO">SOSIO</option>
+    <option value="SEJ">SEJ</option>
+    <option value="BINDO">BINDO</option>
+    <option value="BING">BING</option>
+    <option value="PK">PK</option>
+    <option value="PM">PM</option>
+    <option value="PPU">PPU</option>
+    <option value="LBI-indo">LBI-indo</option>
+    <option value="LBI-ing">LBI-ing</option>
+    </select></label><br>
+  <label>Last-Materi: <input type="text" id="lastmateri" required></label><br>
+  <label>Next-Materi: <input type="text" id="nextmateri" required></label><br>
+  <button type="submit">Simpan</button>
+  <button type="reset">Batal</button>
+</form>
+
+<br>
+<hr>
+
+<h2>Cari Data</h2>
+<label>Kelas: 
+  <select id="filterKelas" onchange="filterTable()">
+    <option value="">--pilih kelas--</option>
+    <option value="10/SMA/22">10/SMA/22</option>
+    <option value="10/SMA/24">10/SMA/24</option>
+    <option value="10/SMA/26">10/SMA/26</option>
+    <option value="10/SMA/28">10/SMA/28</option>
+    <option value="11/IPS/12">11/IPS/12</option>
+    <option value="11/IPS/22">11/IPS/22</option>
+    <option value="11/IPA/14">11/IPA/14</option>
+    <option value="11/IPA/22">11/IPA/22</option>
+    <option value="11/IPA/24">11/IPA/24</option>
+    <option value="11/IPA/26">11/IPA/26</option>
+    <option value="11/IPA/28">11/IPA/28</option>
+    <option value="12/IPS/15">12/IPS/15</option>
+    <option value="12/IPS/27">12/IPS/27</option>
+    <option value="12/IPA/11">12/IPA/11</option>
+    <option value="12/IPA/12">12/IPA/12</option>
+    <option value="12/IPA/13">12/IPA/13</option>
+    <option value="12/IPA/17">12/IPA/17</option>
+    <option value="12/IPA/21">12/IPA/21</option>
+    <option value="12/IPA/23">12/IPA/23</option>
+    <option value="12/IPA/25">12/IPA/25</option>
+  </select>
+</label>
+<label id="labelMapel">Mapel: 
+  <select id="filterMapel" onchange="filterTable()">
+    <option value="">--pilih mapel--</option>
+    <option value="MAT">MAT</option>
+    <option value="MATWA">MATWA</option>
+    <option value="MATLAN">MATLAN</option>
+    <option value="FIS">FIS</option>
+    <option value="KIM">KIM</option>
+    <option value="BIO">BIO</option>
+    <option value="EKO">EKO</option>
+    <option value="GEO">GEO</option>
+    <option value="SOSIO">SOSIO</option>
+    <option value="SEJ">SEJ</option>
+    <option value="BINDO">BINDO</option>
+    <option value="BING">BING</option>
+    <option value="PK">PK</option>
+    <option value="PM">PM</option>
+    <option value="PPU">PPU</option>
+    <option value="LBI-indo">LBI-indo</option>
+    <option value="LBI-ing">LBI-ing</option>
+  </select>
+</label>
+
+<h2>Daftar Materi</h2>
+<table id="tabelMateri"></table>
+
+<footer>
+  <small>&copy; 2025 repository</small>
+</footer>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwDffshcxVkOoTXk-HMdVMC3JUSAly9fbmIsLftobNv0FNkS3C7RYYT4MJrAn0dSe6d/exec"; // ganti dengan URL Apps Script mu
+let allData = [];
+let lastChecksum = null;
+let filterKelasVal = "";
+let filterMapelVal = "";
+
+
+
+// Load data dari sheet
+function loadData() {
+  fetch(scriptURL)
+    .then(res => res.json())
+    .then(res => {
+      if (res.checksum !== lastChecksum) {
+        lastChecksum = res.checksum;
+        allData = res.data.slice(1); // hapus header
+        updateFilterDropdowns();
+        applyFilterAndRender();
+      }
+    });
+}
+
+// Render tabel dengan filter aktif
+function applyFilterAndRender() {
+  const filtered = allData.filter(row => {
+    return (filterKelasVal === "" || row[1] === filterKelasVal) &&
+           (filterMapelVal === "" || row[2] === filterMapelVal);
+  }).reverse();
+  renderTable(filtered);
+}
+
+// Render tabel
+function renderTable(data) {
+  let html = `
+    <thead>
+      <tr>
+        <th>Tgl</th>
+        <th>Kelas</th>
+        <th>Mapel</th>
+        <th>Last-Materi</th>
+        <th>Next-Materi</th>
+      </tr>
+    </thead><tbody>
+  `;
+  data.forEach(row => {
+    html += `
+      <tr>
+        <td>${row[0] || ""}</td>
+        <td>${row[1] || ""}</td>
+        <td>${row[2] || ""}</td>
+        <td>${row[3] || ""}</td>
+        <td>${row[4] || ""}</td>
+      </tr>
+    `;
+  });
+  html += "</tbody>";
+  document.getElementById("tabelMateri").innerHTML = html;
+}
+
+// Update dropdown filter sesuai data unik
+function updateFilterDropdowns() {
+  const kelasSet = new Set();
+  const mapelSet = new Set();
+  allData.forEach(row => {
+    if (row[1]) kelasSet.add(row[1]);
+    if (row[2]) mapelSet.add(row[2]);
+  });
+
+  const kelasSelect = document.getElementById("filterKelas");
+  const mapelSelect = document.getElementById("filterMapel");
+
+  const prevKelas = kelasSelect.value;
+  const prevMapel = mapelSelect.value;
+
+  kelasSelect.innerHTML = '<option value="">--pilih kelas--</option>';
+  mapelSelect.innerHTML = '<option value="">--pilih mapel--</option>';
+
+  kelasSet.forEach(k => kelasSelect.innerHTML += `<option value="${k}">${k}</option>`);
+  mapelSet.forEach(m => mapelSelect.innerHTML += `<option value="${m}">${m}</option>`);
+
+  kelasSelect.value = prevKelas || "";
+  mapelSelect.value = prevMapel || "";
+
+  filterKelasVal = kelasSelect.value;
+  filterMapelVal = mapelSelect.value;
+}
+
+// Saat filter dropdown berubah
+function filterTable() {
+  filterKelasVal = document.getElementById("filterKelas").value;
+  filterMapelVal = document.getElementById("filterMapel").value;
+  applyFilterAndRender();
+}
+
+// Form submit (insert)
+document.getElementById("materiForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const data = {
+    action: "insert",
+    tanggal: document.getElementById("tanggal").value,
+    kelas: document.getElementById("input_kelas").value,
+    mapel: document.getElementById("input_mapel").value,
+    lastmateri: document.getElementById("lastmateri").value,
+    nextmateri: document.getElementById("nextmateri").value
+  };
+  fetch(scriptURL, { method: "POST", body: JSON.stringify(data) })
+    .then(res => res.json())
+    .then(res => {
+      alert("Berhasil menambahkan data");
+      document.getElementById("materiForm").reset();
+      loadData();
+    });
+});
+
+// Inisialisasi + auto-refresh setiap 5 detik
+loadData();
+setInterval(loadData, 5000);
+
+</script>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <title>895</title>
+</head>
+<body>
+    <div>
+        <select id="filter_kelas">
+            <option value="">--pilih kelas--</option>
+            <option value="10a">10A</option>
+            <option value="11b">11B</option>
+            <option value="12c">12C</option>
+        </select>
+        <select id="filter_mapel">
+            <option value="">--pilih mapel--</option>
+            <option value="mat">Mat</option>
+            <option value="fis">Fis</option>
+            <option value="kim">Kim</option>
+        </select>
+        <button id="submit_f">search</button>
+    </div>
+    <br>
+    <div>
+        <table id="tabel_materi"></table>
+    </div>
+    <br><br>
+    <div>
+        <form id="materiForm">
+            <label for="tanggal">
+                Tanggal: <input type="date" id="tanggal">
+            </label>
+            <label for="input_kelas">
+                Kelas: <select id="input_kelas">
+                    <option value="">--pilih kelas--</option>
+                    <option value="10a">10A</option>
+                    <option value="11b">11B</option>
+                    <option value="12c">12C</option>
+                </select>
+            </label>
+            <label for="input_mapel">
+                Mapel: <select id="input_mapel">
+                    <option value="">--pilih mapel--</option>
+                    <option value="mat">Mat</option>
+                    <option value="fis">Fis</option>
+                    <option value="kim">Kim</option>
+                </select>
+            </label>
+            <label for="materi">
+                Materi: <input type="text" id="materi">
+            </label>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+
+    <script>
+        // script filter data
+
+        document.getElementById("submit_f").addEventListener("click", function() {
+            let kelasInput = document.getElementById("filter_kelas").value.toLowerCase();
+            let mapelInput = document.getElementById("filter_mapel").value.toLowerCase();
+
+            let rows = document.querySelectorAll("#tabel_materi tbody tr");
+
+            rows.forEach(row => {
+                let kelas = row.cells[1].textContent.toLowerCase();
+                let mapel = row.cells[2].textContent.toLowerCase();
+
+                if ((kelasInput === "" || kelas === kelasInput) &&
+                    (mapelInput === "" || mapel === mapelInput)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+            });
+        });
+    </script>
+
+
+<!-- script JS tanpa action edit dan hapus 
+
+    <script>
+        // script upload data
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbw4Sl-GCFoYZkgdm0u6n2ga8EGyNFsxchxDkmryRXzpHZxXWmzhFxvmoblfleIo_T2E/exec";
+
+        document.getElementById("materiForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = {
+                tanggal: document.getElementById("tanggal").value,
+                kelas: document.getElementById("input_kelas").value,
+                mapel: document.getElementById("input_mapel").value,
+                materi: document.getElementById("materi").value
+            };
+            fetch(scriptURL, {
+                method: "POST",
+                body: JSON.stringify(data)
+            }).then(res => res.json()).then(() => {
+                alert("Data berhasil disimpan!");
+                loadData();
+            });
+        });
+
+        function loadData() {
+            fetch(scriptURL)
+                .then(res => res.json())
+                .then(data => {
+                    let table = `
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Kelas</th>
+                            <th>Mapel</th>
+                            <th>Materi</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+                    data.slice(1).reverse().forEach(row => {
+                        table += `
+                        <tr>
+                            <td>${row[0]}</td>
+                            <td>${row[1]}</td>
+                            <td>${row[2]}</td>
+                            <td>${row[3]}</td>
+                        </tr>`;
+                    });
+                    table += `</tbody>`;
+                        document.getElementById("tabel_materi").innerHTML = table;
+                });
+        }
+
+        loadData();
+        // refresh data setiap 5 detik
+        setInterval(loadData, 5000);
+
+    </script>
+
+
+
+
+</body>
+</html>
+-->
