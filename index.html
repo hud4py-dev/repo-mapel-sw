@@ -13,15 +13,16 @@
       * {
         font-family: "Ubuntu";
         font-style: normal;
-        font-size: 23px;
+        font-size: 20px;
+	background-color: black;
+        color: white;
       }
 
       #tabelMateri {
-        border: 1px solid black;
       }
 
       th, td {
-        border: 1px solid black;
+        border: 1px solid white;
         padding: 5px;
         text-align: center;
       }
@@ -35,34 +36,61 @@
       }
 
       #tanggal {
-        margin-left: 28px;
-        border: 2px solid black;
+        margin-left: 2px;
+	padding: 5px;
       }
 
       #input_kelas {
-        margin-left: 48px;
-        border: 2px solid black;
+        margin-left: 2px;
+	padding: 5px;
+	text-align: center;
       }
 
       #lastmateri {
         margin-left: 2px;
-        border: 2px solid black;
+	padding: 5px;
+	color: yellow;
       }
 
       #input_mapel {
-        margin-left: 42px;
-        border: 2px solid black;
+        margin-left: 2px;
+	padding: 5px;
+	text-align: center;
       }
-        
+
       #nextmateri {
-        border: 2px solid black;
+	padding: 5px;
+	color: pink;
       }
 
       footer {
         margin-top: 50px;
-        margin-bottom: 20px;
-        text-align: center;
+        margin-bottom: 10px;
+        text-align: left;
       }
+
+      #filterKelas, #filterMapel {
+	padding: 5px;
+      }
+
+      .LM {
+	color: yellow;
+      }
+
+      .NM {
+	color: pink;
+      }
+
+      button {
+	padding: 5px;
+      }
+
+      #button_batal {
+	margin-left: 5px;
+      }
+
+      #tanggal, #input_kelas, #input_mapel, #lastmateri, #nextmateri, #filterKelas, #filterMapel {
+	}
 
     </style>
 </head>
@@ -119,10 +147,10 @@
     <option value="LBI-indo">LBI-indo</option>
     <option value="LBI-ing">LBI-ing</option>
     </select></label><br>
-  <label>Last-Materi: <input type="text" id="lastmateri" required></label><br>
-  <label>Next-Materi: <input type="text" id="nextmateri" required></label><br>
+  <label>Last-Materi: <input type="text" id="lastmateri" placeholder="isi materi hari ini" required></label><br>
+  <label>Next-Materi: <input type="text" id="nextmateri" placeholder="jika tidak ada, isi ' - '" required></label><br>
   <button type="submit">Simpan</button>
-  <button type="reset">Batal</button>
+  <button type="reset" id="button_batal">Batal</button>
 </form>
 
 <br>
@@ -235,8 +263,8 @@ function renderTable(data) {
         <td>${row[0] || ""}</td>
         <td>${row[1] || ""}</td>
         <td>${row[2] || ""}</td>
-        <td>${row[3] || ""}</td>
-        <td>${row[4] || ""}</td>
+        <td class="LM">${row[3] || ""}</td>
+        <td class="NM">${row[4] || ""}</td>
       </tr>
     `;
   });
