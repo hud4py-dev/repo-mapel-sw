@@ -271,7 +271,7 @@ function renderTable(data) {
   `;
   data.forEach(row => {
 	let data = new Date(row.tanggal);
-    let day = String(date.getDate()).padStrart(2,'0');
+    let day = String(date.getDate()).padStart(2,'0');
     let month = String(date.getMonth()+1).padStart(2,'0');
     row.tanggalFormatted = `${day}/${month}`;
     html += `
