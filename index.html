@@ -225,7 +225,7 @@
 </footer>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwDffshcxVkOoTXk-HMdVMC3JUSAly9fbmIsLftobNv0FNkS3C7RYYT4MJrAn0dSe6d/exec"; // ganti dengan URL Apps Script mu
+const scriptURL = "https://script.google.com/macros/s/AKfycbyRE3UXlmLG9knp10Jf0hXUtAP9XEYM9l-p4Y-UrT2iHIjNOWgiky0PPF0O-qVIXCs/exec"; // ganti dengan URL Apps Script mu
 let allData = [];
 let lastChecksum = null;
 let filterKelasVal = "";
@@ -272,7 +272,7 @@ function renderTable(data) {
   data.forEach(row => {
     html += `
       <tr>
-        <td>${row.tanggalFormatted || ""}</td>
+        <td>${row[0] || ""}</td>
         <td>${row[1] || ""}</td>
         <td>${row[2] || ""}</td>
         <td class="LM">${row[3] || ""}</td>
