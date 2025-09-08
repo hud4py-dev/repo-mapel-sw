@@ -14,30 +14,33 @@
         font-family: "Ubuntu";
         font-style: normal;
         font-size: 20px;
-	background-color: black;
-        color: white;
+	background-color: whitesmoke;
+        color: black;
       }
 
       #tabelMateri {
+        border: 1px solid grey;
       }
 
       th, td {
-        border: 1px solid white;
+        border: 1px solid grey;
         padding: 5px;
         text-align: center;
+        border-collapse: collapse;
       }
 
       #labelMapel {
         margin-left: 10px;
       }
 
-      button, input, #input_kelas, #input_mapel {
-        margin-top: 10px;
+      button, input, #input_kelas, #input_mapel, #filterKelas {
+        margin-bottom: 10px;
       }
 
       #tanggal {
         margin-left: 2px;
 	padding: 5px;
+
       }
 
       #input_kelas {
@@ -49,7 +52,7 @@
       #lastmateri {
         margin-left: 2px;
 	padding: 5px;
-	color: yellow;
+  width: 98%;
       }
 
       #input_mapel {
@@ -60,7 +63,7 @@
 
       #nextmateri {
 	padding: 5px;
-	color: pink;
+  width: 98%;
       }
 
       footer {
@@ -73,14 +76,6 @@
 	padding: 5px;
       }
 
-      .LM {
-	color: yellow;
-      }
-
-      .NM {
-	color: pink;
-      }
-
       button {
 	padding: 5px;
       }
@@ -91,7 +86,15 @@
 
       #tanggal, #input_kelas, #input_mapel, #lastmateri, #nextmateri, #filterKelas, #filterMapel {
 	}
+      #materiForm {
+        outline: 2.5px solid grey;
+        padding: 16px;
+        margin-right: 8px;
+      }
 
+      h1, h2 {
+        margin-top: 0px;
+      }
     </style>
 </head>
 <body>
@@ -100,8 +103,9 @@
   <h1 align="center">DATABASE MATERI [SW]</h1>
 </header>
 
-<h2>Form Input Materi</h2>
+
 <form id="materiForm">
+  <h2>Form Input Materi</h2>
   <label>Tanggal: <input type="date" id="tanggal" required></label><br>
   <label>Kelas: <select id="input_kelas" required>
     <option value="">--pilih kelas--</option>
