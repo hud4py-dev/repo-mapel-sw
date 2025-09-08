@@ -13,24 +13,23 @@
       * {
         font-family: "Ubuntu";
         font-style: normal;
-        font-size: 12px;
+        font-size: 17px;
 	background-color: whitesmoke;
         color: black;
-        margin: 8px 3px;
+        margin: 8px 8px;
       }
 
       #tabelMateri {
-        border: 1px solid grey;
-		max-width: 500px:
+        border: 3px solid grey;
+        width: 98.5%;
       }
 
       th, td {
-        border: 1px solid #ccc;
-        padding: 5px;
-        text-align: left;
+        border: 3px solid grey;
+        padding: 2px;
+        word-break: break-all;
+        text-align: center;
         border-collapse: collapse;
-		overflow-wrap: break-word;
-		word-break: break-all;
       }
 
       #labelMapel {
@@ -103,6 +102,10 @@
       h1 {
         margin-bottom: 20px;
       }
+
+      .k {
+        white-space: nowrap;
+      }
     </style>
 </head>
 <body>
@@ -141,26 +144,26 @@
   </label><br>
   <label>Mapel: <select id="input_mapel" required>
     <option value="">--pilih mapel--</option>
-    <option value="MAT">MAT</option>
-    <option value="MATW">MATW</option>
-    <option value="MATL">MATL</option>
+    <option value="MA">MA</option>
+    <option value="MAW">MAW</option>
+    <option value="MAL">MAL</option>
     <option value="FIS">FIS</option>
     <option value="KIM">KIM</option>
     <option value="BIO">BIO</option>
     <option value="EKO">EKO</option>
     <option value="GEO">GEO</option>
-    <option value="SOSIO">SOSIO</option>
-    <option value="SEJ">SEJ</option>
-    <option value="BINDO">BINDO</option>
-    <option value="BING">BING</option>
+    <option value="SOS">SOs</option>
+    <option value="SEJ">SEj</option>
+    <option value="IDN">IDN</option>
+    <option value="ING">ING</option>
     <option value="PK">PK</option>
     <option value="PM">PM</option>
     <option value="PPU">PPU</option>
-    <option value="LBI-indo">LBI-indo</option>
-    <option value="LBI-ing">LBI-ing</option>
+    <option value="LID">LID</option>
+    <option value="LIG">LIG</option>
     </select></label><br>
-  <label>Last-Materi: <input type="text" id="lastmateri" placeholder="isi materi hari ini" required></label><br>
-  <label>Next-Materi: <input type="text" id="nextmateri" placeholder="jika tidak ada, isi ' - '" required></label><br>
+  <label>Materi Hari Ini: <input type="text" id="lastmateri" placeholder="isi materi hari ini" required></label><br>
+  <label>Next Materi: <input type="text" id="nextmateri" placeholder="jika tidak ada, isi ' - '" required></label><br>
   <button type="submit">Simpan</button>
   <button type="reset" id="button_batal">Batal</button>
 </form>
@@ -197,23 +200,23 @@
 <label id="labelMapel">Mapel: 
   <select id="filterMapel" onchange="filterTable()">
     <option value="">--pilih mapel--</option>
-    <option value="MAT">MAT</option>
-    <option value="MATWA">MATWA</option>
-    <option value="MATLAN">MATLAN</option>
+    <option value="MA">MA</option>
+    <option value="MAW">MAW</option>
+    <option value="MAL">MAL</option>
     <option value="FIS">FIS</option>
     <option value="KIM">KIM</option>
     <option value="BIO">BIO</option>
     <option value="EKO">EKO</option>
     <option value="GEO">GEO</option>
-    <option value="SOSIO">SOSIO</option>
-    <option value="SEJ">SEJ</option>
-    <option value="BINDO">BINDO</option>
-    <option value="BING">BING</option>
+    <option value="SOS">SOs</option>
+    <option value="SEJ">SEj</option>
+    <option value="IDN">IDN</option>
+    <option value="ING">ING</option>
     <option value="PK">PK</option>
     <option value="PM">PM</option>
     <option value="PPU">PPU</option>
-    <option value="LBI-indo">LBI-indo</option>
-    <option value="LBI-ing">LBI-ing</option>
+    <option value="LID">LID</option>
+    <option value="LIG">LIG</option>
   </select>
 </label>
 
@@ -225,7 +228,7 @@
 </footer>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyRE3UXlmLG9knp10Jf0hXUtAP9XEYM9l-p4Y-UrT2iHIjNOWgiky0PPF0O-qVIXCs/exec"; // ganti dengan URL Apps Script mu
+const scriptURL = "https://script.google.com/macros/s/AKfycbwDffshcxVkOoTXk-HMdVMC3JUSAly9fbmIsLftobNv0FNkS3C7RYYT4MJrAn0dSe6d/exec"; // ganti dengan URL Apps Script mu
 let allData = [];
 let lastChecksum = null;
 let filterKelasVal = "";
@@ -263,18 +266,18 @@ function renderTable(data) {
       <tr>
         <th>Tgl</th>
         <th>Kelas</th>
-        <th>Mapel</th>
-        <th>Last-Materi</th>
-        <th>Next-Materi</th>
+        <th class="k">Mapel</th>
+        <th>Materi Hari Ini</th>
+        <th>Next Materi</th>
       </tr>
     </thead><tbody>
   `;
   data.forEach(row => {
     html += `
       <tr>
-        <td>${row[0] || ""}</td>
-        <td>${row[1] || ""}</td>
-        <td>${row[2] || ""}</td>
+        <td class="k">${row[0] || ""}</td>
+        <td class="k">${row[1] || ""}</td>
+        <td class="k">${row[2] || ""}</td>
         <td class="LM">${row[3] || ""}</td>
         <td class="NM">${row[4] || ""}</td>
       </tr>
